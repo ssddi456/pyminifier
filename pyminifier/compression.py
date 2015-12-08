@@ -265,11 +265,9 @@ def zip_pack(filepath, options):
                 "# Created by pyminifier "
                 "(https://github.com/liftoff/pyminifier)\n")
         # Write out to a temporary file to add to our zip
-        temp = tempfile.NamedTemporaryFile(mode='w')
-        temp.write(source)
-        temp.flush()
-        z.write(temp.name, module)
-        temp.close()
+
+        z.writestr(module, source)
+
     z.close()
     # Finish up by writing the shebang to the beginning of the zip
     prepend(shebang, dest)
